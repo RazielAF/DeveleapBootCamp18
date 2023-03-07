@@ -1,0 +1,17 @@
+Bash Escape Room
+================
+The Bash Escape Room is a Docker based excercise (don't worry, we'll learn much more about Docker a bit later).
+
+In order to start the game:
+
+1. Make sure you have Docker installed (you can check by running `which docker`). If not, then find and follow the official documentation instructions for your OS.
+2. Make sure you _do not_ need `sudo` in order to run `docker` (you can check by running `docker ps`). If not, then -again- find and follow the official documentation isntructions to add your user to the Docker group.
+3. Build the escape room: `docker build -t escape-room .` (don't forget the `.` at the end of the command - it's important!).
+4. Run the game: `docker run -it escape-room` (further instructions inside!).
+
+Good Luck!
+
+To hand in
+----------
+- A file with all the passwords to the next room.
+- A screenshot of the last room.
