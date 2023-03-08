@@ -1,0 +1,134 @@
+
+Name:Raziel Afandaev
+
+answers:
+ex1--------
+mkdir FOLDER1
+cd FOLDER1
+git init
+ls -a 
+cd .git
+touch file.txt
+git status
+git add .
+git commit -m "first commit"
+# added text to file.txt
+git add .
+git commit -m "second commit"
+touch file2.txt
+git add .
+git commit -m "3rd commit & added file2.txt"
+git log
+
+
+-------------------------------------------
+
+ex2--------
+git commit -am "change 1"
+git commit -am "change 2"
+git commit -am "change 3"
+git log
+git checkout a78898e (change 2)
+git log
+git log --all
+HEAD is where I am (in this case a78898e (change 2)) the state is "HEAD detached at a78898e"
+I am on the master branch, and I can see it
+the files are still there, since the changes did nothing to the files, the changes where only to the content of the files
+the files content changed to match 'change 2'
+git tag v1.0 a78898e
+git log
+git checkout 0d59b05
+git branch fix1
+git log
+git log --all
+HEAD is in a detached state, although it is attached to the "fix1" branch, we havnt switched to it yet 
+I am on the master branch, and I can see it
+the tag is gone since we are currently checking out an older commit
+git checkout master
+git log
+git log --all
+HEAD is attached pointing to the most previous end of the 'master' branch
+I am on the master branch, and I can see it
+all of the files and chnges are there since we are on the last commit
+
+
+-------------------------------------------
+
+ex3--------
+git remote add origin git@github.com:OfirAviv/gitExDeveleap.git
+git push origin master
+git commit -am "change 4"
+git status
+cd ..
+mkdir FOLDER2
+cd FOLDER2
+git clone git@github.com:RazielAF/gitEx.git
+cd gitEx/
+git log
+cd ..
+cd FOLDER1
+git log
+git push origin master
+git log
+cd ..
+cd FOLDER2/gitEx/
+git log
+git pull
+git log
+cd ..
+cd FOLDER1
+git log
+
+
+-------------------------------------------
+
+ex4--------
+cd ..
+cd ..
+mkdir FOLDER3
+cd FOLDER3
+git clone git@github.com:RazielAF/branchtutorial.git
+cd branchtutorial/
+git log
+local - master
+remote - feature1 feature2 feature3 h2 prithvi
+git checkout h2 -> branch 'h2' set up to track 'origin/h2' -> remote - feature1 feature2 feature3 prithvi
+
+-------------------------------------------
+
+ex5--------
+cd FOLDER1
+git branch new-branch
+git switch new-branch
+touch file3.txt
+git add .
+git commit -m "added file3"
+git push origin new-branch
+git checkout master
+touch file4.txt
+git add .
+git commit -m "added file4"
+I checked github
+git switch -c my-second-branch
+git branch -m my-second-branch temp-branch
+git push origin temp-branch
+git branch -d temp-branch
+git push origin --delete temp-branch
+
+
+-------------------------------------------
+
+ex6--------
+git checkout master
+echo "hello" >> file.txt
+git add . 
+git commit -m "added hello to file.txt"
+git checkout new-branch
+echo "hi" >> file.txt
+git add .
+git commit -m "added hi to file.txt"
+git checkout master
+git merge new-branch
+I resolved the conflicts through a text editor
+git commit -m "resolved conflicts, hi is now the main line"
+git merge new-branch
