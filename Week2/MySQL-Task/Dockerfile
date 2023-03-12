@@ -10,9 +10,6 @@ RUN apt-get install -y mysql-server \
     && chown -R mysql:mysql /var/lib/mysql /var/run/mysqld \
     && chmod 777 /var/run/mysqld
 
-#Mount Data Volume
-VOLUME /var/lib/mysql
-
 # Make sure my.cnf file is in the same dir as Dockerfile
 COPY ./my.cnf /etc/mysql/conf.d
 
