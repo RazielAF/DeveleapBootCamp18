@@ -90,8 +90,10 @@ root@localhost [mydb]> select * from SuperHeroes;
 |      19 | Aquaman         | Jason      | Momoa        | Male   | 267f870e4817b6e287da392d29787d27 |      1 |
 +---------+-----------------+------------+--------------+--------+----------------------------------+--------+
 19 rows in set (0.01 sec)
+
  docker stop mysql
- docker start mysql
+ docker rm -f mysql
+ 
  docker exec -it mysql bash
  mysql -uroot -p12345
  show databases;

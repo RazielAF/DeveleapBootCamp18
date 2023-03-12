@@ -14,7 +14,7 @@ RUN apt-get install -y mysql-server \
 VOLUME /var/lib/mysql
 
 # Make sure my.cnf file is in the same dir as Dockerfile
-VOLUME ./my.cnf /etc/mysql/conf.d
+COPY ./my.cnf /etc/mysql/conf.d
 
 EXPOSE 3306
 
