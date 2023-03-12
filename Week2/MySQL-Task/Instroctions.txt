@@ -1,0 +1,36 @@
+Excercise: Creating a Dockerfile for an application database
+============================================================
+Imagine a situation where the customer application uses MySQL to store application data.
+In this excercise you will build a Dockerfile that allows executing such a database from Docker.
+
+Your mission
+------------
+1. Run MySQL version 5.6 in a container using the MySQL docker image from docker hub:
+   Tip: Make sure you read the dockerhub documentation of the image!
+   a. Start the container and see that you can enter it in bash (docker exec).
+   b. Access internal mysql client and run an SQL command ("select 1") (For more information on using mysql, search the net or get help from people beside you).
+
+2. Now lets expose the db for use outside of docker:
+   a. Run the container with a name, "mysql", and expose the db port on port `8877`.
+   b. Check that an initial TCP connection can be established using `netcat` or `telnet`.
+
+3. `mysql/` folder contains a custom configuration file, and a database dump:
+   a. Load the configuration file using a local volume.
+   b. Mount the data directory as a named volume.
+   c. Create a new database using `dump.sql`.
+   d. Do some basic SQL:
+      - Query list of superheroes (an SQL `SELECT` query) .
+      - Add "aquaman" (an SQL `INSERT` query).
+   e. Restart the service and make sure "Aquaman" is still in the database!
+   f. Delete the container completly, start a new container, and make sure "Aquaman" is still in the database!
+
+4. Create a Dockerfile in which you define your own, Unbuntu based, MySQL image:
+   - `FROM ubuntu:18`.
+   - Allow configuration to be over-written through the use of a volume.
+
+
+To hand in
+----------
+A txt file conataining all
+- The commands you ran *until* stage 3f.
+- The Dockerfile.
