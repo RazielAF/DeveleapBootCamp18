@@ -1,0 +1,93 @@
+Name  Raziel Afandaev
+
+
+Question 1:
+
+docker pull bibbynet/cowsay-node
+docker run -p 8080:8080 bibbynet/cowsay-node
+
+
+Question 2:
+
+a)  ls
+
+#!/bin/bash
+
+if [[ "$1" == "" ]]
+    then
+        PORT=8080
+else
+        PORT=$1
+fi
+
+docker run -d --name cowsay --rm -p $PORT:8080 bibbynet/cowsay-node
+#optinal will use curl to show the cowsay in the terminal
+
+sleep 5
+
+curl localhost:$PORT
+
+
+b)
+================>Dockerfile
+FROM node
+
+WORKDIR /app
+
+COPY ./src/package*.json .
+
+RUN npm install 
+
+COPY . .
+
+RUN chmod 777 ./entry-point.sh
+
+WORKDIR /app/src
+
+ENTRYPOINT [ "/bin/bash","/app/entry-point.sh"]
+
+#!/bin/bash
+
+ ===================>script
+if [[ "$1" == "" ]]
+    then
+        PORT=8080
+else
+       export PORT=$1
+fi
+
+npm start
+
+
+#To run : docker run -d --name cowsay -p 8080:9090 nodecowsay:1 9090
+#docker logs cowsay
+
+
+d)
+docker run -d --name cowsay -p 4001:3001 nodecowsay:1 3001
+
+
+e)
+
+
+FROM node:lts-alpine3.17
+
+WORKDIR /app
+
+COPY ./src/package*.json .
+
+RUN npm install 
+
+COPY . .
+
+RUN chmod 777 ./entry-point.sh
+
+RUN apk add --no-cache bash
+
+WORKDIR /app/src
+
+ENTRYPOINT [ "/bin/bash","/app/entry-point.sh"]
+
+docker run -d --name cowsay -p 4001:3001 nodecowsay:1 3001
+
+
