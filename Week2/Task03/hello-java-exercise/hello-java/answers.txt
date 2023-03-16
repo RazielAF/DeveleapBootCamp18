@@ -1,0 +1,25 @@
+Question 1:
+
+docker run -it --name hello-java -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.3-jdk-8 bash
+
+mvn verify
+
+cd /target
+
+java -jar hello-java.jar
+
+Question 2 (5)
+
+FROM maven:3.3-jdk-8 
+
+WORKDIR /usr/src/mymaven
+
+COPY . .
+
+RUN mvn verify
+
+WORKDIR /usr/src/mymaven/target
+
+ENTRYPOINT java -jar hello-java.jar
+
+Question 3:
