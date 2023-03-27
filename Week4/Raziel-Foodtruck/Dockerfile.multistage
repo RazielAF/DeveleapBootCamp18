@@ -1,0 +1,36 @@
+FROM node:alpine as builder
+
+WORKDIR /app/flask-app
+
+COPY ./foodtrucks/project/flask-app/package*.json /app/flask-app
+
+COPY ./foodtrucks/project/flask-app/webpack.config.js /app/flask-app
+
+WORKDIR /app/flask-app
+
+RUN npm install && npm run build
+
+FROM alpine:3.15
+
+WORKDIR /app/flask-app
+
+COPY --from=builder /app/flask-app/node_modules  /app/flask-app/node_modules
+
+COPY /foodtrucks/project/flask-app /app/flask-app/
+
+RUN apk add --update python2 &&\
+    python -m ensurepip &&\
+    pip install --upgrade pip setuptools
+
+RUN pip install -r requirements.txt
+
+ENTRYPOINT [ "python2","app.py" ]
+
+
+
+
+
+
+
+
+
